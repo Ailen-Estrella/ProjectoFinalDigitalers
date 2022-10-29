@@ -46,6 +46,9 @@ const articleSchema = new mongoose.Schema(
         sanitizedhtml: {
             type: String,
             require: true
+        },
+        image: {
+            type: String
         }
     },
     { versionKey: false }
@@ -65,7 +68,7 @@ articleSchema.pre('validate', function(next) {
         /*
         Lo que hacemos es convertir nuestro doc HTML y luego limpiar
         ese documento que le pasamos y se deshace de cualquier código 
-        malisioso. 
+        malicioso. 
         */
         this.sanitizedhtml = dompurify.sanitize(marked(this.markdown))
     }
